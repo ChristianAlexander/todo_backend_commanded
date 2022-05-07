@@ -13,9 +13,7 @@ config :todo_backend,
 # Configures the endpoint
 config :todo_backend, TodoBackendWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: TodoBackendWeb.ErrorView, accepts: ~w(json), layout: false],
-  pubsub_server: TodoBackend.PubSub,
-  live_view: [signing_salt: "bCxIaarT"]
+  render_errors: [view: TodoBackendWeb.ErrorView, accepts: ~w(json), layout: false]
 
 # Configures Elixir's Logger
 config :logger, :console,

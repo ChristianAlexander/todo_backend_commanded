@@ -12,8 +12,6 @@ defmodule TodoBackend.Application do
       TodoBackend.Repo,
       # Start the Telemetry supervisor
       TodoBackendWeb.Telemetry,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: TodoBackend.PubSub},
       # Start the Endpoint (http/https)
       TodoBackendWeb.Endpoint
       # Start a worker by calling: TodoBackend.Worker.start_link(arg)
