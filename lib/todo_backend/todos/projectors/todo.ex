@@ -8,6 +8,7 @@ defmodule TodoBackend.Todos.Projectors.Todo do
 
   alias TodoBackend.Todos.Events.TodoCreated
   alias TodoBackend.Todos.Events.TodoDeleted
+  alias TodoBackend.Todos.Events.TodoRestored
   alias TodoBackend.Todos.Events.TodoCompleted
   alias TodoBackend.Todos.Events.TodoUncompleted
   alias TodoBackend.Todos.Events.TodoTitleUpdated
@@ -35,6 +36,16 @@ defmodule TodoBackend.Todos.Projectors.Todo do
           :todo,
           Todo.delete_changeset(todo, %{deleted_at: effective_datetime})
         )
+    end
+  end)
+
+  project(%TodoRestored{uuid: uuid}, _, fn multi ->
+    case Repo.get(Todo, uuid) do
+      nil ->
+        multi
+
+      todo ->
+        Ecto.Multi.update(multi, :todo, Todo.delete_changeset(todo, %{deleted_at: nil}))
     end
   end)
 

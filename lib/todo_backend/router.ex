@@ -2,9 +2,11 @@ defmodule TodoBackend.Router do
   use Commanded.Commands.Router
 
   alias TodoBackend.Todos.Aggregates.Todo
-  alias TodoBackend.Todos.Commands.CreateTodo
-  alias TodoBackend.Todos.Commands.DeleteTodo
-  alias TodoBackend.Todos.Commands.UpdateTodo
+  alias TodoBackend.Todos.Commands.{CreateTodo, DeleteTodo, UpdateTodo, RestoreTodo}
 
-  dispatch([CreateTodo, DeleteTodo, UpdateTodo], to: Todo, identity: :uuid, lifespan: Todo)
+  dispatch([CreateTodo, DeleteTodo, UpdateTodo, RestoreTodo],
+    to: Todo,
+    identity: :uuid,
+    lifespan: Todo
+  )
 end
