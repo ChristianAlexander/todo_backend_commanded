@@ -7,5 +7,8 @@ defmodule TodoBackendWeb.Router do
 
   scope "/api", TodoBackendWeb do
     pipe_through :api
+
+    resources "/todos", TodoController
+    delete "/todos", TodoController, :delete_all
   end
 end
