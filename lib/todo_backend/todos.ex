@@ -89,6 +89,7 @@ defmodule TodoBackend.Todos do
 
   """
   def update_todo(%Todo{uuid: uuid}, attrs) do
+    # TODO: ensure todo is active
     command =
       attrs
       |> UpdateTodo.new()
@@ -114,6 +115,7 @@ defmodule TodoBackend.Todos do
 
   """
   def delete_todo(%Todo{uuid: uuid}) do
+    # TODO: ensure todo exists
     command = DeleteTodo.new(%{uuid: uuid})
 
     with :ok <- App.dispatch(command) do
