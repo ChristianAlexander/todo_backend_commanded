@@ -16,6 +16,7 @@ defmodule TodoBackendWeb.TodoView do
       id: todo.id,
       title: todo.title,
       completed: todo.completed,
+      order: todo.order,
       url: Routes.todo_url(Endpoint, :show, todo.id)
     }
   end
