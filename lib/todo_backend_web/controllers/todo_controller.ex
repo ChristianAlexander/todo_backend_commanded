@@ -25,6 +25,12 @@ defmodule TodoBackendWeb.TodoController do
     render(conn, "show.json", todo: todo)
   end
 
+  def restore(conn, %{"id" => id}) do
+    with {:ok, %Todo{} = todo} <- Todos.restore_todo(id) do
+      render(conn, "show.json", todo: todo)
+    end
+  end
+
   def update(conn, %{"id" => id}) do
     todo = Todos.get_todo!(id)
 

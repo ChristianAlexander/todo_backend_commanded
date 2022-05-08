@@ -122,6 +122,16 @@ defmodule TodoBackend.Todos do
     end
   end
 
+  def restore_todo(id) do
+    command = %RestoreTodo{uuid: id}
+
+    with :ok <- App.dispatch(command, consistency: :strong) do
+      {:ok, get_todo!(id)}
+    else
+      reply -> reply
+    end
+  end
+
   @doc """
   Deletes all todos.
 

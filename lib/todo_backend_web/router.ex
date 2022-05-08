@@ -10,5 +10,6 @@ defmodule TodoBackendWeb.Router do
 
     resources "/todos", TodoController
     delete "/todos", TodoController, :delete_all
+    put "/todos/:id/restore", TodoController, :restore
   end
 end
