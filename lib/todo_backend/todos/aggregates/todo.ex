@@ -32,7 +32,7 @@ defmodule TodoBackend.Todos.Aggregates.Todo do
   end
 
   def execute(%Todo{uuid: uuid}, %DeleteTodo{uuid: uuid}) do
-    %TodoDeleted{uuid: uuid}
+    %TodoDeleted{uuid: uuid, datetime: DateTime.utc_now()}
   end
 
   # TODO: validate
@@ -83,8 +83,8 @@ defmodule TodoBackend.Todos.Aggregates.Todo do
     %Todo{todo | order: order}
   end
 
-  def apply(%Todo{uuid: uuid} = todo, %TodoDeleted{uuid: uuid}) do
-    %Todo{todo | deleted_at: DateTime.utc_now()}
+  def apply(%Todo{uuid: uuid} = todo, %TodoDeleted{uuid: uuid, datetime: effective_datetime}) do
+    %Todo{todo | deleted_at: effective_datetime}
   end
 
   def after_command(_command), do: :timer.minutes(1)
