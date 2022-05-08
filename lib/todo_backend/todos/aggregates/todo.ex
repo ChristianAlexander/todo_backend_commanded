@@ -11,18 +11,17 @@ defmodule TodoBackend.Todos.Aggregates.Todo do
 
   alias TodoBackend.Todos.Aggregates.Todo
 
-  alias TodoBackend.Todos.Commands.CreateTodo
-  alias TodoBackend.Todos.Commands.DeleteTodo
-  alias TodoBackend.Todos.Commands.UpdateTodo
-  alias TodoBackend.Todos.Commands.RestoreTodo
+  alias TodoBackend.Todos.Commands.{CreateTodo, DeleteTodo, UpdateTodo, RestoreTodo}
 
-  alias TodoBackend.Todos.Events.TodoCreated
-  alias TodoBackend.Todos.Events.TodoDeleted
-  alias TodoBackend.Todos.Events.TodoRestored
-  alias TodoBackend.Todos.Events.TodoCompleted
-  alias TodoBackend.Todos.Events.TodoUncompleted
-  alias TodoBackend.Todos.Events.TodoTitleUpdated
-  alias TodoBackend.Todos.Events.TodoOrderUpdated
+  alias TodoBackend.Todos.Events.{
+    TodoCreated,
+    TodoDeleted,
+    TodoRestored,
+    TodoCompleted,
+    TodoUncompleted,
+    TodoTitleUpdated,
+    TodoOrderUpdated
+  }
 
   def execute(%Todo{uuid: nil}, %CreateTodo{} = create) do
     %TodoCreated{

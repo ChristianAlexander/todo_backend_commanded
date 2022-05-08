@@ -6,13 +6,15 @@ defmodule TodoBackend.Todos.Projectors.Todo do
 
   alias TodoBackend.Repo
 
-  alias TodoBackend.Todos.Events.TodoCreated
-  alias TodoBackend.Todos.Events.TodoDeleted
-  alias TodoBackend.Todos.Events.TodoRestored
-  alias TodoBackend.Todos.Events.TodoCompleted
-  alias TodoBackend.Todos.Events.TodoUncompleted
-  alias TodoBackend.Todos.Events.TodoTitleUpdated
-  alias TodoBackend.Todos.Events.TodoOrderUpdated
+  alias TodoBackend.Todos.Events.{
+    TodoCreated,
+    TodoDeleted,
+    TodoRestored,
+    TodoCompleted,
+    TodoUncompleted,
+    TodoTitleUpdated,
+    TodoOrderUpdated
+  }
 
   alias TodoBackend.Todos.Projections.Todo
 

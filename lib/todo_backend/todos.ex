@@ -6,10 +6,7 @@ defmodule TodoBackend.Todos do
   import Ecto.Query, warn: false
   alias TodoBackend.App
   alias TodoBackend.Repo
-  alias TodoBackend.Todos.Commands.CreateTodo
-  alias TodoBackend.Todos.Commands.DeleteTodo
-  alias TodoBackend.Todos.Commands.UpdateTodo
-
+  alias TodoBackend.Todos.Commands.{CreateTodo, DeleteTodo, UpdateTodo, RestoreTodo}
   alias TodoBackend.Todos.Projections.Todo
 
   @doc """
