@@ -3,7 +3,8 @@ defmodule TodoBackend.Todos.Aggregates.Todo do
     :uuid,
     :title,
     :completed,
-    :order
+    :order,
+    deleted_at: nil
   ]
 
   @behaviour Commanded.Aggregates.AggregateLifespan
@@ -82,8 +83,8 @@ defmodule TodoBackend.Todos.Aggregates.Todo do
     %Todo{todo | order: order}
   end
 
-  def apply(%Todo{uuid: uuid}, %TodoDeleted{uuid: uuid}) do
-    nil
+  def apply(%Todo{uuid: uuid} = todo, %TodoDeleted{uuid: uuid}) do
+    %Todo{todo | deleted_at: DateTime.utc_now()}
   end
 
   def after_command(_command), do: :timer.minutes(1)
