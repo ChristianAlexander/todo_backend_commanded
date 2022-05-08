@@ -22,7 +22,10 @@ defmodule TodoBackend.Todos do
 
   """
   def list_todos do
-    Repo.all(Todo)
+    from(t in Todo,
+      where: is_nil(t.deleted_at)
+    )
+    |> Repo.all()
   end
 
   @doc """
@@ -39,7 +42,12 @@ defmodule TodoBackend.Todos do
       ** (Ecto.NoResultsError)
 
   """
-  def get_todo!(uuid), do: Repo.get_by!(Todo, uuid: uuid)
+  def get_todo!(uuid) do
+    from(t in Todo,
+      where: is_nil(t.deleted_at)
+    )
+    |> Repo.get_by!(uuid: uuid)
+  end
 
   @doc """
   Creates a todo.

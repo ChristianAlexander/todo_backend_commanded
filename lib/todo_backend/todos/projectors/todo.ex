@@ -24,8 +24,18 @@ defmodule TodoBackend.Todos.Projectors.Todo do
     })
   end)
 
-  project(%TodoDeleted{uuid: uuid}, _, fn multi ->
-    Ecto.Multi.delete(multi, :todo, fn _ -> %Todo{uuid: uuid} end)
+  project(%TodoDeleted{uuid: uuid, datetime: effective_datetime}, _, fn multi ->
+    case Repo.get(Todo, uuid) do
+      nil ->
+        multi
+
+      todo ->
+        Ecto.Multi.update(
+          multi,
+          :todo,
+          Todo.delete_changeset(todo, %{deleted_at: effective_datetime})
+        )
+    end
   end)
 
   project(%TodoCompleted{uuid: uuid}, _, fn multi ->
