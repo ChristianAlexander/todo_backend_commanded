@@ -125,6 +125,16 @@ defmodule TodoBackend.Todos do
 
   """
   def delete_all_todos() do
-    Repo.delete_all(Todo)
+    stream = Repo.stream(Todo)
+    correlation_id = Ecto.UUID.generate()
+
+    Repo.transaction(fn ->
+      Enum.each(stream, fn todo ->
+        App.dispatch(
+          DeleteTodo.new(%{uuid: todo.uuid}),
+          correlation_id: correlation_id
+        )
+      end)
+    end)
   end
 end
