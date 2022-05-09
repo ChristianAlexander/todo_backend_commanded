@@ -9,6 +9,7 @@ defmodule TodoBackend.Application do
   def start(_type, _args) do
     children = [
       TodoBackend.App,
+      TodoBackend.Todos.Supervisor,
       # Start the Ecto repository
       TodoBackend.Repo,
       # Start the Telemetry supervisor
