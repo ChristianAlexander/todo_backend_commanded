@@ -31,6 +31,8 @@ config :todo_backend, TodoBackend.App,
   pubsub: :local,
   registry: :local
 
+config :commanded_ecto_projections, repo: TodoBackend.Repo
+
 config :todo_backend, event_stores: [TodoBackend.EventStore]
 
 # Import environment specific config. This must remain at the bottom
