@@ -6,7 +6,7 @@ defmodule TodoBackend.Todos do
   import Ecto.Query, warn: false
   alias TodoBackend.Repo
 
-  alias TodoBackend.Todos.Todo
+  alias TodoBackend.Todos.Projections.Todo
 
   @doc """
   Returns the list of todos.
@@ -28,14 +28,14 @@ defmodule TodoBackend.Todos do
 
   ## Examples
 
-      iex> get_todo!(123)
+      iex> get_todo!("51004ff5-5a73-4681-87bb-1b1ffbf03fe0")
       %Todo{}
 
-      iex> get_todo!(456)
+      iex> get_todo!("00000000-0000-0000-0000-000000000000")
       ** (Ecto.NoResultsError)
 
   """
-  def get_todo!(id), do: Repo.get!(Todo, id)
+  def get_todo!(uuid), do: Repo.get_by!(Todo, uuid: uuid)
 
   @doc """
   Creates a todo.

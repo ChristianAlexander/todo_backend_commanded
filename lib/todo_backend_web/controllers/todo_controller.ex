@@ -2,7 +2,7 @@ defmodule TodoBackendWeb.TodoController do
   use TodoBackendWeb, :controller
 
   alias TodoBackend.Todos
-  alias TodoBackend.Todos.Todo
+  alias TodoBackend.Todos.Projections.Todo
 
   action_fallback TodoBackendWeb.FallbackController
 

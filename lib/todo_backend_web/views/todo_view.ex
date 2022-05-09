@@ -13,11 +13,11 @@ defmodule TodoBackendWeb.TodoView do
 
   def render("todo.json", %{todo: todo}) do
     %{
-      id: todo.id,
+      id: todo.uuid,
       title: todo.title,
       completed: todo.completed,
       order: todo.order,
-      url: Routes.todo_url(Endpoint, :show, todo.id)
+      url: Routes.todo_url(Endpoint, :show, todo.uuid)
     }
   end
 end
