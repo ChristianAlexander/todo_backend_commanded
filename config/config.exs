@@ -23,6 +23,16 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :todo_backend, TodoBackend.App,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: TodoBackend.EventStore
+  ],
+  pubsub: :local,
+  registry: :local
+
+config :todo_backend, event_stores: [TodoBackend.EventStore]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
