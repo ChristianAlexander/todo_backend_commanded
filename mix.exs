@@ -20,7 +20,7 @@ defmodule TodoBackend.MixProject do
   def application do
     [
       mod: {TodoBackend.Application, []},
-      extra_applications: [:logger, :runtime_tools, :eventstore]
+      extra_applications: [:logger, :runtime_tools, :eventstore, :crypto]
     ]
   end
 
@@ -42,7 +42,8 @@ defmodule TodoBackend.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:commanded, "~> 1.3"},
-      {:commanded_eventstore_adapter, "~> 1.2"}
+      {:commanded_eventstore_adapter, "~> 1.2"},
+      {:cors_plug, "~> 3.0"}
     ]
   end
 
