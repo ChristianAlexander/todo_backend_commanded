@@ -20,7 +20,7 @@ defmodule TodoBackend.MixProject do
   def application do
     [
       mod: {TodoBackend.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :eventstore]
     ]
   end
 
@@ -40,7 +40,9 @@ defmodule TodoBackend.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:commanded, "~> 1.3"},
+      {:commanded_eventstore_adapter, "~> 1.2"}
     ]
   end
 
